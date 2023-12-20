@@ -42,7 +42,8 @@ class PrivateTagsApiTests(TestCase):
     """Test for authenticated API requests"""
 
     def setUp(self):
-        """Create a user, create a client and then authenticate user to the client"""
+        """Create a user, create a client, and then
+        authenticate user to the client"""
         self.user = create_user()
         self.client = APIClient()
         self.client.force_authenticate(self.user)
@@ -66,7 +67,7 @@ class PrivateTagsApiTests(TestCase):
 
         user2 = create_user('gary@example.com', password='testpass123')
 
-        tag1 = Tag.objects.create(user=user2, name='Fruity')
+        Tag.objects.create(user=user2, name='Fruity')
         tag2 = Tag.objects.create(user=self.user, name='Mexican')
 
         res = self.client.get(TAGS_URL)
